@@ -1,0 +1,47 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins{
+    id 'io.franzbecker.gradle-lombok' version '1.14'
+}
+
+apply plugin: 'jacoco'
+apply plugin: 'java'
+apply plugin: 'idea'
+
+group = 'pl.regonos.exception.wrapper'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+ext{
+    assertjVersion = '3.8.0'
+    junitVersion = '5.2.0'
+    lombokVersion = '1.18.4'
+    mockitoVersion = '2.+'
+    log4jVersion = '2.11.0'
+}
+
+lombok {
+    version = '1.18.4'
+    sha256 = ""
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+// https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
+
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: assertjVersion
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junitVersion
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: junitVersion
+    testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: junitVersion
+}
